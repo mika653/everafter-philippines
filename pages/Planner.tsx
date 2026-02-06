@@ -26,7 +26,7 @@ const Planner: React.FC = () => {
              <button className="bg-white px-8 py-4 rounded-2xl border border-ever-frost text-xs font-bold uppercase tracking-widest text-ever-midnight hover:border-ever-midnight transition-all">
                Guest Site
              </button>
-             <button className="bg-ever-midnight text-white px-8 py-4 rounded-2xl text-xs font-bold uppercase tracking-widest flex items-center gap-2 hover:bg-ever-cove transition-all shadow-lg">
+             <button className="bg-ever-blush text-white px-8 py-4 rounded-2xl text-xs font-bold uppercase tracking-widest flex items-center gap-2 hover:bg-ever-midnight transition-all shadow-lg">
                <Share2 size={14} />
                Invite Partner
              </button>

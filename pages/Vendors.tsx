@@ -317,7 +317,7 @@ const Vendors: React.FC = () => {
                     <span className="text-sm font-bold text-ever-midnight">{vendor.rating}</span>
                     <span className="text-[10px] text-ever-horizon font-bold uppercase">({vendor.reviewCount})</span>
                   </div>
-                  <button className="text-sm font-bold text-ever-midnight hover:underline underline-offset-8 decoration-ever-cove">Inquire Now</button>
+                  <button className="text-sm font-bold text-ever-blush hover:underline underline-offset-8 decoration-ever-blush">Inquire Now</button>
                 </div>
               </div>
             </div>

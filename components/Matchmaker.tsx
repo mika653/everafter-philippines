@@ -225,7 +225,7 @@ const Matchmaker: React.FC<{ onNavigate: (page: string) => void }> = ({ onNaviga
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="fixed bottom-6 right-6 z-[100] bg-ever-midnight text-white pl-5 pr-6 py-4 rounded-full flex items-center gap-3 shadow-2xl hover:bg-ever-cove transition-all group"
+          className="fixed bottom-6 right-6 z-[100] bg-ever-blush text-white pl-5 pr-6 py-4 rounded-full flex items-center gap-3 shadow-2xl hover:bg-ever-midnight transition-all group"
           style={{ animation: 'fadeIn 0.5s ease' }}
         >
           <Sparkles size={18} className="group-hover:rotate-12 transition-transform" />

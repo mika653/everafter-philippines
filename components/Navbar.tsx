@@ -28,7 +28,7 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentPage }) => {
               style={{ fontFamily: 'Jost' }}
             >
               everaftr
-              <span className="w-1 h-1 bg-ever-cove rounded-full ml-0.5 mb-1"></span>
+              <span className="w-1 h-1 bg-ever-blush rounded-full ml-0.5 mb-1"></span>
             </button>
           </div>
 

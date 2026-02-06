@@ -29,7 +29,7 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
               <span className="text-[10px] font-bold uppercase tracking-[0.5em] text-ever-cove mb-6 block">Where forever begins • PH</span>
               <h1 className="text-7xl md:text-9xl font-normal leading-[0.85] tracking-tighter text-ever-midnight mb-8" style={{ fontFamily: 'Jost' }}>
                 Your wedding,<br />
-                <span className="serif italic font-light ml-4">your way.</span>
+                <span className="serif italic font-light ml-4 text-ever-blush">your way.</span>
               </h1>
             </div>
             
@@ -38,7 +38,7 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 max-w-lg">
-              <button onClick={() => onNavigate('vendors')} className="flex-1 bg-ever-midnight text-white px-8 py-5 rounded-full font-medium text-sm flex items-center justify-between group hover:bg-ever-cove transition-all shadow-xl">
+              <button onClick={() => onNavigate('vendors')} className="flex-1 bg-ever-blush text-white px-8 py-5 rounded-full font-medium text-sm flex items-center justify-between group hover:bg-ever-midnight transition-all shadow-xl">
                 Find Suppliers
                 <ArrowRight size={18} className="group-hover:translate-x-2 transition-transform" />
               </button>
@@ -61,7 +61,7 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
       <section className="mt-20 max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-6">
         {weddingTypes.map((type, i) => (
           <div key={i} className="group cursor-pointer bg-ever-pearl p-8 rounded-[2.5rem] border border-ever-frost hover:bg-white hover:shadow-xl transition-all duration-500">
-            <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-ever-cove mb-6 group-hover:bg-ever-midnight group-hover:text-white transition-all">
+            <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-ever-blush mb-6 group-hover:bg-ever-blush group-hover:text-white transition-all">
               {type.icon}
             </div>
             <h4 className="text-xl font-normal text-ever-midnight mb-2">{type.name}</h4>
@@ -101,7 +101,7 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
           <div className="relative z-10">
             <h2 className="text-4xl md:text-6xl font-normal text-white serif mb-8 italic">The PSA & Church Roadmap</h2>
             <p className="text-ever-horizon max-w-xl mx-auto mb-12 text-lg">Don't get lost in paperwork. From your CENOMAR to the Marriage License, we've mapped out the legal steps for you.</p>
-            <button onClick={() => onNavigate('guides')} className="bg-white text-ever-midnight px-12 py-5 rounded-full font-bold uppercase tracking-widest text-xs hover:bg-ever-frost transition-all">
+            <button onClick={() => onNavigate('guides')} className="bg-ever-blush text-white px-12 py-5 rounded-full font-bold uppercase tracking-widest text-xs hover:bg-white hover:text-ever-midnight transition-all">
               View Legal Guide
             </button>
           </div>

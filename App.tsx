@@ -65,14 +65,14 @@ const App: React.FC = () => {
             <div className="md:col-span-5">
               <div className="text-3xl font-normal text-ever-midnight flex items-baseline tracking-tight mb-8" style={{ fontFamily: 'Jost' }}>
                 everaftr
-                <span className="w-1.5 h-1.5 bg-ever-cove rounded-full ml-0.5 mb-1.5"></span>
+                <span className="w-1.5 h-1.5 bg-ever-blush rounded-full ml-0.5 mb-1.5"></span>
               </div>
               <p className="text-ever-cove serif italic text-xl leading-relaxed mb-10 max-w-sm">
                 A calm, reassuring presence for couples navigating life's most important moments.
               </p>
               <div className="flex gap-4">
                 {[Instagram, Facebook, Twitter, Mail].map((Icon, idx) => (
-                  <a key={idx} href="#" className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-ever-cove border border-ever-frost hover:bg-ever-midnight hover:text-white transition-all shadow-sm">
+                  <a key={idx} href="#" className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-ever-cove border border-ever-frost hover:bg-ever-blush hover:text-white hover:border-ever-blush transition-all shadow-sm">
                     <Icon size={18} />
                   </a>
                 ))}

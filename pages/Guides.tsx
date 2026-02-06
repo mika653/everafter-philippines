@@ -42,7 +42,7 @@ const Guides: React.FC = () => {
           {['Pre-wedding', 'Ceremony', 'Post-wedding'].map(phase => (
             <div key={phase} className="space-y-8">
               <div className="flex items-center gap-3 px-4">
-                <Heart size={16} className="text-ever-horizon" />
+                <Heart size={16} className="text-ever-blush" />
                 <h3 className="text-xs font-bold uppercase tracking-[0.4em] text-ever-midnight">{phase}</h3>
               </div>
               <div className="space-y-4">
@@ -129,7 +129,7 @@ const Guides: React.FC = () => {
         <div className="relative z-10">
           <h3 className="text-4xl md:text-5xl font-normal mb-8 serif italic">Planning a heritage wedding?</h3>
           <p className="text-ever-horizon mb-12 max-w-lg mx-auto leading-relaxed text-lg">Our consultants specialize in balancing traditional Filipino values with modern celebrations. Let's make it yours.</p>
-          <button className="bg-white text-ever-midnight px-14 py-5 rounded-full font-bold uppercase tracking-widest text-xs hover:bg-ever-frost transition-all shadow-xl">
+          <button className="bg-ever-blush text-white px-14 py-5 rounded-full font-bold uppercase tracking-widest text-xs hover:bg-white hover:text-ever-midnight transition-all shadow-xl">
             Book a consultation
           </button>
         </div>
