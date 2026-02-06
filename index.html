@@ -1,0 +1,111 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>everaftr - Where forever begins</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --snow: #FFFFFF;
+            --pearl: #F5F8F8;
+            --frost: #D5E4ED;
+            --horizon: #9DC0D3;
+            --cove: #6B96AD;
+            --midnight: #1C3347;
+        }
+        body {
+            font-family: 'Jost', sans-serif;
+            background-color: var(--snow);
+            color: var(--midnight);
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+        .serif {
+            font-family: 'Cormorant Garamond', serif;
+        }
+        
+        /* Grain Texture Overlay */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: 9999;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        .bg-ever-midnight { background-color: var(--midnight); }
+        .text-ever-midnight { color: var(--midnight); }
+        .bg-ever-cove { background-color: var(--cove); }
+        .text-ever-cove { color: var(--cove); }
+        .bg-ever-horizon { background-color: var(--horizon); }
+        .text-ever-horizon { color: var(--horizon); }
+        .bg-ever-frost { background-color: var(--frost); }
+        .bg-ever-pearl { background-color: var(--pearl); }
+        .border-ever-frost { border-color: var(--frost); }
+        .border-ever-midnight { border-color: var(--midnight); }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-reveal {
+            animation: fadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        /* Rings Animation */
+        @keyframes ring-left-in {
+            0% { transform: translateX(-60px); opacity: 0; }
+            100% { transform: translateX(12px); opacity: 1; }
+        }
+        @keyframes ring-right-in {
+            0% { transform: translateX(60px); opacity: 0; }
+            100% { transform: translateX(-12px); opacity: 1; }
+        }
+        @keyframes splash-shrink {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(1.1); opacity: 0; visibility: hidden; }
+        }
+        
+        .ring-left {
+            animation: ring-left-in 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .ring-right {
+            animation: ring-right-in 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .splash-overlay {
+            animation: splash-shrink 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            animation-delay: 2.5s;
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--snow); }
+        ::-webkit-scrollbar-thumb { background: var(--frost); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--horizon); }
+
+        /* Editorial utility */
+        .hairline-border { border: 0.5px solid var(--frost); }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.4",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "lucide-react": "https://esm.sh/lucide-react@^0.563.0",
+    "html2canvas": "https://esm.sh/html2canvas@1.4.1"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body>
+    <div id="root"></div>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>
