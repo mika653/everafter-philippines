@@ -551,11 +551,11 @@ const SaveTheDate: React.FC = () => {
           <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-ever-cove mb-6">Live Preview</p>
 
           {/* Card preview */}
-          <div className="bg-ever-pearl rounded-3xl p-8 flex items-center justify-center mb-8">
+          <div className="bg-ever-pearl rounded-3xl p-4 sm:p-8 flex items-center justify-center mb-8">
             <div
               ref={cardRef}
-              className="relative overflow-hidden shadow-2xl"
-              style={{ width: '360px', aspectRatio: '5/7', borderRadius: '4px' }}
+              className="relative overflow-hidden shadow-2xl w-full max-w-[360px]"
+              style={{ aspectRatio: '5/7', borderRadius: '4px' }}
             >
               <TemplateComponent data={formData} />
             </div>
