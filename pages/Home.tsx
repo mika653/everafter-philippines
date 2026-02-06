@@ -94,16 +94,16 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
           </div>
         ))}
         {/* Dark overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-ever-midnight/60 via-ever-midnight/50 to-ever-midnight/70" />
+        <div className="absolute inset-0 bg-gradient-to-b from-ever-midnight/80 via-ever-midnight/70 to-ever-midnight/85" />
 
         {/* Content */}
         <div className="relative z-10 max-w-4xl mx-auto px-4 text-center w-full py-20 animate-reveal">
-          <span className="text-[10px] font-bold uppercase tracking-[0.5em] text-white/70 mb-6 block">Where forever begins &bull; PH</span>
-          <h1 className="text-5xl md:text-7xl font-normal leading-[0.9] tracking-tighter text-white mb-6" style={{ fontFamily: 'Jost' }}>
+          <span className="text-[10px] font-bold uppercase tracking-[0.5em] text-white/90 mb-6 block" style={{ textShadow: '0 1px 8px rgba(0,0,0,0.4)' }}>Where forever begins &bull; PH</span>
+          <h1 className="text-5xl md:text-7xl font-normal leading-[0.9] tracking-tighter text-white mb-6" style={{ fontFamily: 'Jost', textShadow: '0 2px 20px rgba(0,0,0,0.3)' }}>
             Plan your dream<br />
             <span className="serif italic font-light text-ever-blush">Filipino wedding.</span>
           </h1>
-          <p className="text-lg md:text-xl text-white/80 max-w-xl mx-auto serif italic leading-relaxed mb-12">
+          <p className="text-lg md:text-xl text-white/90 max-w-xl mx-auto serif italic leading-relaxed mb-12" style={{ textShadow: '0 1px 10px rgba(0,0,0,0.3)' }}>
             Find venues, suppliers, and planning tools for your perfect day.
           </p>
 
