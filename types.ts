@@ -73,6 +73,12 @@ export interface SaveTheDateTemplate {
   accentColor: string;
 }
 
+export interface NavigationParams {
+  category?: string;
+  location?: string;
+  tab?: string;
+}
+
 export interface MatchmakerAnswers {
   styles: string[];
   budgetTier: number | null;

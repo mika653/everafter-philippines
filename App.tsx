@@ -1,11 +1,12 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Vendors from './pages/Vendors';
 import Planner from './pages/Planner';
 import Guides from './pages/Guides';
 import Matchmaker from './components/Matchmaker';
+import { NavigationParams } from './types';
 import { Instagram, Facebook, Twitter, Mail } from 'lucide-react';
 
 const SplashScreen = () => (
@@ -28,36 +29,43 @@ const SplashScreen = () => (
 
 const App: React.FC = () => {
   const [currentPage, setCurrentPage] = useState('home');
+  const [navParams, setNavParams] = useState<NavigationParams>({});
   const [showSplash, setShowSplash] = useState(true);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowSplash(false);
-    }, 3000); // Allow splash animation to complete
+    }, 3000);
     return () => clearTimeout(timer);
+  }, []);
+
+  const navigate = useCallback((page: string, params?: NavigationParams) => {
+    setCurrentPage(page);
+    setNavParams(params || {});
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
   const renderPage = () => {
     switch (currentPage) {
-      case 'home': return <Home onNavigate={setCurrentPage} />;
-      case 'vendors': return <Vendors />;
-      case 'planner': return <Planner />;
+      case 'home': return <Home onNavigate={navigate} />;
+      case 'vendors': return <Vendors defaultCategory={navParams.category} defaultLocation={navParams.location} />;
+      case 'planner': return <Planner defaultTab={navParams.tab} />;
       case 'guides': return <Guides />;
-      default: return <Home onNavigate={setCurrentPage} />;
+      default: return <Home onNavigate={navigate} />;
     }
   };
 
   return (
     <div className="flex flex-col min-h-screen">
       {showSplash && <SplashScreen />}
-      
-      <Navbar currentPage={currentPage} onNavigate={setCurrentPage} />
-      
+
+      <Navbar currentPage={currentPage} onNavigate={navigate} />
+
       <main className="flex-grow">
         {renderPage()}
       </main>
 
-      <Matchmaker onNavigate={setCurrentPage} />
+      <Matchmaker onNavigate={navigate} />
 
       <footer className="bg-ever-pearl border-t border-ever-frost pt-32 pb-20">
         <div className="max-w-7xl mx-auto px-4">
@@ -78,13 +86,13 @@ const App: React.FC = () => {
                 ))}
               </div>
             </div>
-            
+
             <div className="md:col-span-2">
               <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-ever-midnight mb-8">Navigation</h4>
               <ul className="space-y-4 text-sm font-medium text-ever-cove">
-                <li><button onClick={() => setCurrentPage('vendors')} className="hover:text-ever-midnight transition-colors">Directory</button></li>
-                <li><button onClick={() => setCurrentPage('planner')} className="hover:text-ever-midnight transition-colors">Planning Tools</button></li>
-                <li><button onClick={() => setCurrentPage('guides')} className="hover:text-ever-midnight transition-colors">Resources</button></li>
+                <li><button onClick={() => navigate('vendors')} className="hover:text-ever-midnight transition-colors">Directory</button></li>
+                <li><button onClick={() => navigate('planner')} className="hover:text-ever-midnight transition-colors">Planning Tools</button></li>
+                <li><button onClick={() => navigate('guides')} className="hover:text-ever-midnight transition-colors">Resources</button></li>
                 <li><button className="hover:text-ever-midnight transition-colors">Real Weddings</button></li>
               </ul>
             </div>
@@ -92,10 +100,10 @@ const App: React.FC = () => {
             <div className="md:col-span-2">
               <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-ever-midnight mb-8">Directory</h4>
               <ul className="space-y-4 text-sm font-medium text-ever-cove">
-                <li><a href="#" className="hover:text-ever-midnight transition-colors">Venues</a></li>
-                <li><a href="#" className="hover:text-ever-midnight transition-colors">Catering</a></li>
-                <li><a href="#" className="hover:text-ever-midnight transition-colors">Photography</a></li>
-                <li><a href="#" className="hover:text-ever-midnight transition-colors">Wedding Stylists</a></li>
+                <li><button onClick={() => navigate('vendors', { category: 'Venues' })} className="hover:text-ever-midnight transition-colors">Venues</button></li>
+                <li><button onClick={() => navigate('vendors', { category: 'Caterers' })} className="hover:text-ever-midnight transition-colors">Catering</button></li>
+                <li><button onClick={() => navigate('vendors', { category: 'Photographers' })} className="hover:text-ever-midnight transition-colors">Photography</button></li>
+                <li><button onClick={() => navigate('vendors', { category: 'Bridal Gowns' })} className="hover:text-ever-midnight transition-colors">Bridal Gowns</button></li>
               </ul>
             </div>
 
@@ -108,9 +116,9 @@ const App: React.FC = () => {
               </div>
             </div>
           </div>
-          
+
           <div className="pt-10 border-t border-ever-frost flex flex-col md:flex-row justify-between items-center gap-6">
-            <p className="text-ever-horizon text-[10px] font-bold uppercase tracking-widest">© 2024 everaftr Philippines. Where forever begins.</p>
+            <p className="text-ever-horizon text-[10px] font-bold uppercase tracking-widest">&copy; 2025 everaftr Philippines. Where forever begins.</p>
             <div className="flex gap-10 text-[10px] font-bold uppercase tracking-widest text-ever-horizon">
               <a href="#" className="hover:text-ever-midnight transition-colors">Privacy</a>
               <a href="#" className="hover:text-ever-midnight transition-colors">Terms</a>

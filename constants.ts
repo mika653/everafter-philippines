@@ -221,6 +221,29 @@ export const SAVE_THE_DATE_TEMPLATES: SaveTheDateTemplate[] = [
   }
 ];
 
+// ─── Platform navigation data ───────────────────────────────────────
+export const VENDOR_CATEGORIES = [
+  { id: 'Venues', label: 'Venues', icon: 'Building2', description: 'Ceremony & reception spaces' },
+  { id: 'Caterers', label: 'Caterers', icon: 'UtensilsCrossed', description: 'Food & beverage' },
+  { id: 'Photographers', label: 'Photographers', icon: 'Camera', description: 'Photo & video' },
+  { id: 'Bridal Gowns', label: 'Bridal Gowns', icon: 'Shirt', description: 'Wedding dresses' },
+  { id: 'Barongs', label: 'Barongs', icon: 'Shirt', description: 'Groom attire' },
+  { id: 'Rings', label: 'Rings', icon: 'Gem', description: 'Rings & jewelry' },
+];
+
+export const ALL_LOCATIONS = [
+  'Metro Manila (North)', 'Metro Manila (South)', 'Tagaytay',
+  'Luzon (North)', 'Luzon (Central)',
+  'Boracay', 'Bohol', 'Visayas', 'Mindanao',
+];
+
+export const POPULAR_SEARCHES = [
+  { label: 'Venues in Tagaytay', category: 'Venues', location: 'Tagaytay' },
+  { label: 'Beach Weddings in Boracay', category: 'Venues', location: 'Boracay' },
+  { label: 'Caterers in Manila', category: 'Caterers', location: 'Metro Manila (North)' },
+  { label: 'Photographers in Bohol', category: 'Photographers', location: 'Bohol' },
+];
+
 export const DEFAULT_SAVE_THE_DATE: SaveTheDateData = {
   groomName: '',
   brideName: '',

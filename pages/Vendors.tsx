@@ -1,17 +1,30 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { VENDORS } from '../constants';
 import { Search, MapPin, Star, CheckCircle, Video, X, Sparkles, RotateCcw, ChevronDown, Map as MapIcon, Info, Heart } from 'lucide-react';
 import { Vendor } from '../types';
 
-const Vendors: React.FC = () => {
-  const [activeCategory, setActiveCategory] = useState('All');
+interface VendorsProps {
+  defaultCategory?: string;
+  defaultLocation?: string;
+}
+
+const Vendors: React.FC<VendorsProps> = ({ defaultCategory, defaultLocation }) => {
+  const [activeCategory, setActiveCategory] = useState(defaultCategory || 'All');
   const [budgetFilters, setBudgetFilters] = useState<number[]>([]);
-  const [locationFilters, setLocationFilters] = useState<string[]>([]);
+  const [locationFilters, setLocationFilters] = useState<string[]>(defaultLocation ? [defaultLocation] : []);
   const [styleFilters, setStyleFilters] = useState<string[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedTour, setSelectedTour] = useState<string | null>(null);
-  const [isLocationExpanded, setIsLocationExpanded] = useState(false);
+  const [isLocationExpanded, setIsLocationExpanded] = useState(!!defaultLocation);
+
+  useEffect(() => {
+    if (defaultCategory) setActiveCategory(defaultCategory);
+    if (defaultLocation) {
+      setLocationFilters([defaultLocation]);
+      setIsLocationExpanded(true);
+    }
+  }, [defaultCategory, defaultLocation]);
   
   const categories = ['All', 'Venues', 'Caterers', 'Photographers', 'Bridal Gowns', 'Barongs', 'Rings'];
   

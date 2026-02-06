@@ -1,13 +1,21 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Checklist from '../components/PlanningTools/Checklist';
 import BudgetPlanner from '../components/PlanningTools/BudgetPlanner';
 import SponsorManager from '../components/PlanningTools/SponsorManager';
 import SaveTheDate from '../components/PlanningTools/SaveTheDate';
 import { Calendar, ClipboardList, Wallet, Users, Share2, HeartHandshake, Mail } from 'lucide-react';
 
-const Planner: React.FC = () => {
-  const [activeTab, setActiveTab] = useState('checklist');
+interface PlannerProps {
+  defaultTab?: string;
+}
+
+const Planner: React.FC<PlannerProps> = ({ defaultTab }) => {
+  const [activeTab, setActiveTab] = useState(defaultTab || 'checklist');
+
+  useEffect(() => {
+    if (defaultTab) setActiveTab(defaultTab);
+  }, [defaultTab]);
 
   return (
     <div className="bg-ever-pearl min-h-screen py-20">
