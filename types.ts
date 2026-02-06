@@ -72,3 +72,11 @@ export interface SaveTheDateTemplate {
   description: string;
   accentColor: string;
 }
+
+export interface MatchmakerAnswers {
+  styles: string[];
+  budgetTier: number | null;
+  location: string | null;
+  categories: string[];
+  priority: string | null;
+}

@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import Vendors from './pages/Vendors';
 import Planner from './pages/Planner';
 import Guides from './pages/Guides';
+import Matchmaker from './components/Matchmaker';
 import { Instagram, Facebook, Twitter, Mail } from 'lucide-react';
 
 const SplashScreen = () => (
@@ -55,6 +56,8 @@ const App: React.FC = () => {
       <main className="flex-grow">
         {renderPage()}
       </main>
+
+      <Matchmaker onNavigate={setCurrentPage} />
 
       <footer className="bg-ever-pearl border-t border-ever-frost pt-32 pb-20">
         <div className="max-w-7xl mx-auto px-4">

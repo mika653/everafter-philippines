@@ -182,10 +182,7 @@ const FilipinianaCard: React.FC<{ data: SaveTheDateData }> = ({ data }) => {
       {/* Inner frame */}
       <div style={{ position: 'absolute', inset: '20px', border: '0.5px solid #C5A57266', pointerEvents: 'none' }} />
 
-      <p style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '10px', letterSpacing: '0.3em', textTransform: 'uppercase', color: '#8B6914', fontWeight: 600, marginBottom: '4px' }}>
-        Ipagsama ang Petsa
-      </p>
-      <p style={{ fontFamily: 'Jost, sans-serif', fontSize: '7px', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#A08050', fontWeight: 500, marginBottom: '16px' }}>
+      <p style={{ fontFamily: 'Jost, sans-serif', fontSize: '8px', letterSpacing: '0.3em', textTransform: 'uppercase', color: '#8B6914', fontWeight: 600, marginBottom: '16px' }}>
         Save the Date
       </p>
 
