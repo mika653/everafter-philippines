@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { ArrowRight, Heart, Camera, Map, FileText, Search, Building2, UtensilsCrossed, Shirt, Gem, Star, MapPin, ClipboardList, Wallet, HeartHandshake, Users, Mail, ChevronRight, CheckCircle, Sparkles } from 'lucide-react';
 import { NavigationParams } from '../types';
 import { VENDORS, VENDOR_CATEGORIES, ALL_LOCATIONS, POPULAR_SEARCHES, FILIPINO_TRADITIONS } from '../constants';
@@ -17,9 +17,27 @@ const CATEGORY_ICONS: Record<string, React.ReactNode> = {
   Rings: <Gem size={24} />,
 };
 
+const HERO_IMAGES = [
+  { url: 'https://images.unsplash.com/photo-1529634597503-139d3726fed5?auto=format&fit=crop&q=80&w=1600', alt: 'Happy couple at their wedding' },
+  { url: 'https://images.unsplash.com/photo-1604017011826-d3b4c23f8914?auto=format&fit=crop&q=80&w=1600', alt: 'Two brides celebrating their love' },
+  { url: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=1600', alt: 'Wedding couple embracing' },
+  { url: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&q=80&w=1600', alt: 'Two grooms on their wedding day' },
+  { url: 'https://images.unsplash.com/photo-1591604466107-ec97de577aff?auto=format&fit=crop&q=80&w=1600', alt: 'Couple sharing a tender moment' },
+];
+
 const Home: React.FC<HomeProps> = ({ onNavigate }) => {
   const [searchCategory, setSearchCategory] = useState('');
   const [searchLocation, setSearchLocation] = useState('');
+  const [heroIndex, setHeroIndex] = useState(0);
+
+  const nextSlide = useCallback(() => {
+    setHeroIndex(prev => (prev + 1) % HERO_IMAGES.length);
+  }, []);
+
+  useEffect(() => {
+    const timer = setInterval(nextSlide, 5000);
+    return () => clearInterval(timer);
+  }, [nextSlide]);
 
   const vendorCounts: Record<string, number> = {};
   VENDORS.forEach(v => {
@@ -58,20 +76,39 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
 
   return (
     <div className="pb-32">
-      {/* ─── Section A: Hero with Search ─── */}
-      <section className="bg-ever-pearl pt-16 pb-20 md:pt-24 md:pb-28">
-        <div className="max-w-4xl mx-auto px-4 text-center animate-reveal">
-          <span className="text-[10px] font-bold uppercase tracking-[0.5em] text-ever-cove mb-6 block">Where forever begins &bull; PH</span>
-          <h1 className="text-5xl md:text-7xl font-normal leading-[0.9] tracking-tighter text-ever-midnight mb-6" style={{ fontFamily: 'Jost' }}>
+      {/* ─── Section A: Hero with Image Carousel ─── */}
+      <section className="relative min-h-[85vh] flex items-center overflow-hidden">
+        {/* Background Carousel */}
+        {HERO_IMAGES.map((img, i) => (
+          <div
+            key={i}
+            className="absolute inset-0 transition-opacity duration-1000 ease-in-out"
+            style={{ opacity: heroIndex === i ? 1 : 0 }}
+          >
+            <img
+              src={img.url}
+              alt={img.alt}
+              className="w-full h-full object-cover scale-105"
+              loading={i === 0 ? 'eager' : 'lazy'}
+            />
+          </div>
+        ))}
+        {/* Dark overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-ever-midnight/60 via-ever-midnight/50 to-ever-midnight/70" />
+
+        {/* Content */}
+        <div className="relative z-10 max-w-4xl mx-auto px-4 text-center w-full py-20 animate-reveal">
+          <span className="text-[10px] font-bold uppercase tracking-[0.5em] text-white/70 mb-6 block">Where forever begins &bull; PH</span>
+          <h1 className="text-5xl md:text-7xl font-normal leading-[0.9] tracking-tighter text-white mb-6" style={{ fontFamily: 'Jost' }}>
             Plan your dream<br />
             <span className="serif italic font-light text-ever-blush">Filipino wedding.</span>
           </h1>
-          <p className="text-lg md:text-xl text-ever-cove max-w-xl mx-auto serif italic leading-relaxed mb-12">
+          <p className="text-lg md:text-xl text-white/80 max-w-xl mx-auto serif italic leading-relaxed mb-12">
             Find venues, suppliers, and planning tools for your perfect day.
           </p>
 
           {/* Search Bar */}
-          <div className="bg-white rounded-2xl md:rounded-full shadow-xl border border-ever-frost p-2 flex flex-col md:flex-row gap-2 max-w-2xl mx-auto">
+          <div className="bg-white rounded-2xl md:rounded-full shadow-2xl p-2 flex flex-col md:flex-row gap-2 max-w-2xl mx-auto">
             <div className="relative flex-1">
               <select
                 value={searchCategory}
@@ -107,15 +144,26 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
 
           {/* Popular Searches */}
           <div className="mt-6 flex flex-wrap justify-center gap-2">
-            <span className="text-[10px] font-bold uppercase tracking-widest text-ever-horizon self-center mr-1">Popular:</span>
+            <span className="text-[10px] font-bold uppercase tracking-widest text-white/50 self-center mr-1">Popular:</span>
             {POPULAR_SEARCHES.map((ps, i) => (
               <button
                 key={i}
                 onClick={() => onNavigate('vendors', { category: ps.category, location: ps.location })}
-                className="px-4 py-1.5 bg-white rounded-full text-xs font-medium text-ever-cove border border-ever-frost hover:border-ever-blush hover:text-ever-blush transition-all"
+                className="px-4 py-1.5 bg-white/10 backdrop-blur rounded-full text-xs font-medium text-white/80 border border-white/20 hover:bg-white/20 hover:text-white transition-all"
               >
                 {ps.label}
               </button>
+            ))}
+          </div>
+
+          {/* Carousel Indicators */}
+          <div className="mt-10 flex justify-center gap-2">
+            {HERO_IMAGES.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setHeroIndex(i)}
+                className={`h-1 rounded-full transition-all duration-500 ${heroIndex === i ? 'w-8 bg-ever-blush' : 'w-2 bg-white/30 hover:bg-white/50'}`}
+              />
             ))}
           </div>
         </div>
