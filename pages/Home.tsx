@@ -76,101 +76,110 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
 
   return (
     <div className="pb-32">
-      {/* ─── Section A: Hero with Image Carousel ─── */}
-      <section className="relative min-h-[85vh] flex items-center overflow-hidden">
-        {/* Background Carousel */}
-        {HERO_IMAGES.map((img, i) => (
-          <div
-            key={i}
-            className="absolute inset-0 transition-opacity duration-1000 ease-in-out"
-            style={{ opacity: heroIndex === i ? 1 : 0 }}
-          >
-            <img
-              src={img.url}
-              alt={img.alt}
-              className="w-full h-full object-cover scale-105"
-              loading={i === 0 ? 'eager' : 'lazy'}
-            />
-          </div>
-        ))}
-        {/* Dark overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-ever-midnight/80 via-ever-midnight/70 to-ever-midnight/85" />
+      {/* ─── Section A: Hero with Side Carousel ─── */}
+      <section className="bg-ever-pearl overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 min-h-[85vh] items-center">
+            {/* Left: Text & Search */}
+            <div className="lg:col-span-7 py-16 lg:py-24 lg:pr-12 animate-reveal">
+              <span className="text-[10px] font-bold uppercase tracking-[0.5em] text-ever-cove mb-6 block">Where forever begins &bull; PH</span>
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-normal leading-[0.95] tracking-tighter text-ever-midnight mb-6" style={{ fontFamily: 'Jost' }}>
+                Plan your dream<br />
+                <span className="serif italic font-light text-ever-blush">Filipino wedding.</span>
+              </h1>
+              <p className="text-lg md:text-xl text-ever-cove max-w-lg serif italic leading-relaxed mb-10">
+                Find venues, suppliers, and planning tools for your perfect day.
+              </p>
 
-        {/* Content */}
-        <div className="relative z-10 max-w-4xl mx-auto px-4 text-center w-full py-20 animate-reveal">
-          <span className="text-[10px] font-bold uppercase tracking-[0.5em] text-white/90 mb-6 block" style={{ textShadow: '0 1px 8px rgba(0,0,0,0.4)' }}>Where forever begins &bull; PH</span>
-          <h1 className="text-5xl md:text-7xl font-normal leading-[0.9] tracking-tighter text-white mb-6" style={{ fontFamily: 'Jost', textShadow: '0 2px 20px rgba(0,0,0,0.3)' }}>
-            Plan your dream<br />
-            <span className="serif italic font-light text-ever-blush">Filipino wedding.</span>
-          </h1>
-          <p className="text-lg md:text-xl text-white/90 max-w-xl mx-auto serif italic leading-relaxed mb-12" style={{ textShadow: '0 1px 10px rgba(0,0,0,0.3)' }}>
-            Find venues, suppliers, and planning tools for your perfect day.
-          </p>
+              {/* Search Bar */}
+              <div className="bg-white rounded-2xl shadow-xl p-2 flex flex-col sm:flex-row gap-2 max-w-xl">
+                <div className="relative flex-1">
+                  <select
+                    value={searchCategory}
+                    onChange={(e) => setSearchCategory(e.target.value)}
+                    className="w-full appearance-none bg-ever-pearl rounded-xl px-5 py-4 text-sm font-medium text-ever-midnight outline-none cursor-pointer"
+                  >
+                    <option value="">All Categories</option>
+                    {VENDOR_CATEGORIES.map(cat => (
+                      <option key={cat.id} value={cat.id}>{cat.label}</option>
+                    ))}
+                  </select>
+                </div>
+                <div className="relative flex-1">
+                  <select
+                    value={searchLocation}
+                    onChange={(e) => setSearchLocation(e.target.value)}
+                    className="w-full appearance-none bg-ever-pearl rounded-xl px-5 py-4 text-sm font-medium text-ever-midnight outline-none cursor-pointer"
+                  >
+                    <option value="">All Locations</option>
+                    {ALL_LOCATIONS.map(loc => (
+                      <option key={loc} value={loc}>{loc}</option>
+                    ))}
+                  </select>
+                </div>
+                <button
+                  onClick={handleSearch}
+                  className="bg-ever-blush text-white px-8 py-4 rounded-xl font-bold text-sm flex items-center justify-center gap-2 hover:bg-ever-midnight transition-all shadow-lg"
+                >
+                  <Search size={16} />
+                  Search
+                </button>
+              </div>
 
-          {/* Search Bar */}
-          <div className="bg-white rounded-2xl md:rounded-full shadow-2xl p-2 flex flex-col md:flex-row gap-2 max-w-2xl mx-auto">
-            <div className="relative flex-1">
-              <select
-                value={searchCategory}
-                onChange={(e) => setSearchCategory(e.target.value)}
-                className="w-full appearance-none bg-ever-pearl rounded-xl md:rounded-full px-5 py-4 text-sm font-medium text-ever-midnight outline-none cursor-pointer"
-              >
-                <option value="">All Categories</option>
-                {VENDOR_CATEGORIES.map(cat => (
-                  <option key={cat.id} value={cat.id}>{cat.label}</option>
+              {/* Popular Searches */}
+              <div className="mt-5 flex flex-wrap gap-2">
+                <span className="text-[10px] font-bold uppercase tracking-widest text-ever-horizon self-center mr-1">Popular:</span>
+                {POPULAR_SEARCHES.map((ps, i) => (
+                  <button
+                    key={i}
+                    onClick={() => onNavigate('vendors', { category: ps.category, location: ps.location })}
+                    className="px-4 py-1.5 bg-white rounded-full text-xs font-medium text-ever-cove border border-ever-frost hover:border-ever-blush hover:text-ever-midnight transition-all"
+                  >
+                    {ps.label}
+                  </button>
                 ))}
-              </select>
+              </div>
             </div>
-            <div className="relative flex-1">
-              <select
-                value={searchLocation}
-                onChange={(e) => setSearchLocation(e.target.value)}
-                className="w-full appearance-none bg-ever-pearl rounded-xl md:rounded-full px-5 py-4 text-sm font-medium text-ever-midnight outline-none cursor-pointer"
-              >
-                <option value="">All Locations</option>
-                {ALL_LOCATIONS.map(loc => (
-                  <option key={loc} value={loc}>{loc}</option>
+
+            {/* Right: Image Carousel */}
+            <div className="lg:col-span-5 relative h-[400px] lg:h-[85vh]">
+              {HERO_IMAGES.map((img, i) => (
+                <div
+                  key={i}
+                  className="absolute inset-0 transition-opacity duration-1000 ease-in-out"
+                  style={{ opacity: heroIndex === i ? 1 : 0 }}
+                >
+                  <img
+                    src={img.url}
+                    alt={img.alt}
+                    className="w-full h-full object-cover lg:rounded-l-[3rem]"
+                    loading={i === 0 ? 'eager' : 'lazy'}
+                  />
+                </div>
+              ))}
+              {/* Carousel Indicators */}
+              <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+                {HERO_IMAGES.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setHeroIndex(i)}
+                    className={`h-1.5 rounded-full transition-all duration-500 ${heroIndex === i ? 'w-8 bg-ever-blush' : 'w-3 bg-white/60 hover:bg-white'}`}
+                  />
                 ))}
-              </select>
+              </div>
+              {/* Caption */}
+              <div className="absolute bottom-14 left-1/2 -translate-x-1/2 z-10">
+                <span className="text-[10px] font-bold uppercase tracking-widest text-white bg-ever-midnight/60 backdrop-blur px-4 py-1.5 rounded-full">
+                  {HERO_IMAGES[heroIndex].alt}
+                </span>
+              </div>
             </div>
-            <button
-              onClick={handleSearch}
-              className="bg-ever-blush text-white px-8 py-4 rounded-xl md:rounded-full font-bold text-sm flex items-center justify-center gap-2 hover:bg-ever-midnight transition-all shadow-lg"
-            >
-              <Search size={16} />
-              Search
-            </button>
-          </div>
-
-          {/* Popular Searches */}
-          <div className="mt-6 flex flex-wrap justify-center gap-2">
-            <span className="text-[10px] font-bold uppercase tracking-widest text-white/50 self-center mr-1">Popular:</span>
-            {POPULAR_SEARCHES.map((ps, i) => (
-              <button
-                key={i}
-                onClick={() => onNavigate('vendors', { category: ps.category, location: ps.location })}
-                className="px-4 py-1.5 bg-white/10 backdrop-blur rounded-full text-xs font-medium text-white/80 border border-white/20 hover:bg-white/20 hover:text-white transition-all"
-              >
-                {ps.label}
-              </button>
-            ))}
-          </div>
-
-          {/* Carousel Indicators */}
-          <div className="mt-10 flex justify-center gap-2">
-            {HERO_IMAGES.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => setHeroIndex(i)}
-                className={`h-1 rounded-full transition-all duration-500 ${heroIndex === i ? 'w-8 bg-ever-blush' : 'w-2 bg-white/30 hover:bg-white/50'}`}
-              />
-            ))}
           </div>
         </div>
       </section>
 
       {/* ─── Section B: Browse by Category ─── */}
-      <section className="max-w-6xl mx-auto px-4 -mt-6 relative z-10">
+      <section className="max-w-6xl mx-auto px-4 py-20">
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
           {VENDOR_CATEGORIES.map((cat) => (
             <button
