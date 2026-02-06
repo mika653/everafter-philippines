@@ -15,7 +15,7 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
 
   const realWeddings = [
     { id: 1, couple: 'Anton & Bianca', location: 'Intramuros, Manila', style: 'Filipiniana Modern', img: 'https://images.unsplash.com/photo-1510076857177-7470076d4098?auto=format&fit=crop&q=80&w=800' },
-    { id: 2, couple: 'Luis & Maya', location: 'Tagaytay Ridge', style: 'Rustic Garden', img: 'https://images.unsplash.com/photo-1522673607200-164883214c4f?auto=format&fit=crop&q=80&w=800' },
+    { id: 2, couple: 'Luis & Maya', location: 'Tagaytay Ridge', style: 'Rustic Garden', img: 'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&q=80&w=800' },
     { id: 3, couple: 'Javy & Sofia', location: 'BGC, Taguig', style: 'Contemporary Chic', img: 'https://images.unsplash.com/photo-1546032996-6dfacbacbf3f?auto=format&fit=crop&q=80&w=800' }
   ];
 

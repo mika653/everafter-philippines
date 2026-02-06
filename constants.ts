@@ -51,7 +51,7 @@ export const VENDORS: Vendor[] = [
     budgetTier: 4,
     rating: 4.9,
     reviewCount: 88,
-    imageUrl: 'https://images.unsplash.com/photo-1594553703248-6a59c5bcc31e?auto=format&fit=crop&q=80&w=1200',
+    imageUrl: 'https://images.unsplash.com/photo-1595407753234-0882f1e77954?auto=format&fit=crop&q=80&w=1200',
     isVerified: true,
     tags: ['Designer', 'International', 'Classic', 'Church', 'Civil']
   },

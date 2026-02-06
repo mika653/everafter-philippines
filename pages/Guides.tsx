@@ -17,7 +17,7 @@ const Guides: React.FC = () => {
       title: "Modern Minimalist Gowns",
       desc: "Embracing simplicity for your Philippine garden ceremony.",
       category: "Attire",
-      img: "https://images.unsplash.com/photo-1594553703248-6a59c5bcc31e?auto=format&fit=crop&q=80&w=800"
+      img: "https://images.unsplash.com/photo-1595407753234-0882f1e77954?auto=format&fit=crop&q=80&w=800"
     }
   ];
 
